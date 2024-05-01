@@ -1,6 +1,6 @@
-export const pomodoroDuration: number = 1 * 60 * 1000;
-export const breakDuration: number = 1 * 60 * 1000;
-export const longBreakDuration: number = 2 * 60 * 1000;
+export const pomodoroDuration: number = 25 * 60 * 1000;
+export const breakDuration: number = 5 * 60 * 1000;
+export const longBreakDuration: number = 20 * 60 * 1000;
 export let taskName: string | null = null;
 export let taskTime: number = 0;
 export let timer: NodeJS.Timeout | null = null;
