@@ -10,10 +10,11 @@
     "type": "git",
     "url": "https://github.com/fredarcito/pomodoro-buddy"
   },
+  "license": "MIT",
   "categories": [
     "Other"
   ],
-  "icon": "src/assets/logo.png",
+  "icon": "logo.png",
   "activationEvents": [],
   "main": "./dist/extension.js",
   "contributes": {
