@@ -23,12 +23,6 @@ Pomodoro Buddy keeps track of your Pomodoro sessions, allowing you to see how mu
 - `Pomodoro Buddy: Add Task`: Add a new task.
 - `Pomodoro Buddy: Show Task Summary`: Show the task summary.
 
-## Settings
-
-- `pomodoro-buddy.pomodoroDuration`: Duration of each Pomodoro session in minutes (default: 25).
-- `pomodoro-buddy.breakDuration`: Duration of short breaks in minutes (default: 5).
-- `pomodoro-buddy.longBreakDuration`: Duration of long breaks in minutes (default: 20).
-
 ## Requirements
 
 No additional requirements.
