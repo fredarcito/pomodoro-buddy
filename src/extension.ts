@@ -1,27 +1,46 @@
 import * as vscode from "vscode";
 
+let addTaskStatusBarItem: vscode.StatusBarItem;
+let statusBarItem: vscode.StatusBarItem;
+let summaryStatusBarItem: vscode.StatusBarItem;
 let timer: NodeJS.Timeout | null = null;
 let elapsedTime: number = 0;
 let taskTime: number = 0;
 let taskName: string | null = null;
-//let pomodoroDuration: number = 25 * 60 * 1000; // 25 minutos en milisegundos
-//let breakDuration: number = 5 * 60 * 1000; // 5 minutos en milisegundos
-
-let pomodoroDuration: number = 30 * 1000; // 25 minutos en milisegundos
-let breakDuration: number = 30 * 1000; // 5 minutos en milisegundos
-
-let statusBarItem: vscode.StatusBarItem;
+let pomodoroDuration: number = 25 * 60 * 1000;
+let breakDuration: number = 5 * 60 * 1000;
+let longBreakDuration: number = 20 * 60 * 1000;
 let tasks: { [taskName: string]: number } = {};
+let completedPomodoros: number = 0;
 
 export function activate(context: vscode.ExtensionContext) {
   statusBarItem = vscode.window.createStatusBarItem(
     vscode.StatusBarAlignment.Left,
-    100
+    90
   );
   statusBarItem.text = "$(clock) Pomodoro";
-  statusBarItem.command = "pomodoro-buddy.startPomodoroSession";
   statusBarItem.show();
   context.subscriptions.push(statusBarItem);
+
+  addTaskStatusBarItem = vscode.window.createStatusBarItem(
+    vscode.StatusBarAlignment.Left,
+    99
+  );
+  addTaskStatusBarItem.text = "$(plus) New Task";
+  addTaskStatusBarItem.command = "pomodoro-buddy.addTask";
+  addTaskStatusBarItem.tooltip = "Add a new task";
+  addTaskStatusBarItem.show();
+  context.subscriptions.push(addTaskStatusBarItem);
+
+  summaryStatusBarItem = vscode.window.createStatusBarItem(
+    vscode.StatusBarAlignment.Left,
+    98
+  );
+  summaryStatusBarItem.text = "$(list-unordered) Task Summary";
+  summaryStatusBarItem.command = "pomodoro-buddy.showTaskSummary";
+  summaryStatusBarItem.tooltip = "Show Task Summary";
+  summaryStatusBarItem.show();
+  context.subscriptions.push(summaryStatusBarItem);
 
   context.subscriptions.push(
     vscode.commands.registerCommand(
@@ -36,15 +55,30 @@ export function activate(context: vscode.ExtensionContext) {
           .then((name) => {
             if (name) {
               taskName = name;
-
               taskTime = 0;
               tasks[name] = 0;
-
               if (!timer) startTimer(pomodoroDuration, true);
             }
           });
       }
     )
+  );
+
+  context.subscriptions.push(
+    vscode.commands.registerCommand("pomodoro-buddy.addTask", () => {
+      vscode.window
+        .showInputBox({
+          placeHolder: "Enter task name",
+          prompt: "Enter the name of the task you want to add:",
+        })
+        .then((name) => {
+          if (name) {
+            taskName = name;
+            taskTime = 0;
+            tasks[name] = 0;
+          }
+        });
+    })
   );
 
   context.subscriptions.push(
@@ -79,32 +113,46 @@ function updateTimer(duration: number, isPomodoro: boolean) {
     clearInterval(timer!);
     timer = null;
     if (isPomodoro) {
-      // Lógica para el pomodoro completado
       vscode.window.showInformationMessage(
         `Pomodoro completed for task: ${taskName}`
       );
 
+      completedPomodoros++;
       resetTimer();
 
-      vscode.window
-        .showInformationMessage(
-          "Time for a 5-minute break. Take a rest?",
-          "Yes",
-          "No"
-        )
-        .then((choice) => {
-          if (choice === "Yes") {
-            startTimer(breakDuration, false); // Iniciar el temporizador de descanso de 5 minutos
-          } else {
-            startTimer(pomodoroDuration, true); // Reanudar otro pomodoro de 25 minutos
-          }
-        });
+      if (completedPomodoros < 4) {
+        vscode.window
+          .showInformationMessage(
+            "Time for a 5-minute break. Take a rest?",
+            "Yes",
+            "No"
+          )
+          .then((choice) => {
+            choice === "Yes"
+              ? startTimer(breakDuration, false)
+              : startTimer(pomodoroDuration, true);
+          });
+      } else {
+        vscode.window
+          .showInformationMessage(
+            "You've completed 4 Pomodoros. Time for a 20-minute long break. Take a rest?",
+            "Yes",
+            "No"
+          )
+          .then((choice) => {
+            choice === "Yes"
+              ? startTimer(longBreakDuration, false)
+              : startTimer(pomodoroDuration, true);
+
+            completedPomodoros = 0;
+          });
+      }
     } else {
       vscode.window
         .showInformationMessage("Break time completed", "Start Pomodoro")
         .then((choice) => {
           if (choice === "Start Pomodoro") {
-            startTimer(pomodoroDuration, true); // Iniciar un nuevo pomodoro con la misma tarea
+            startTimer(pomodoroDuration, true);
           }
         });
     }
