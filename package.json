@@ -3,6 +3,7 @@
   "displayName": "Pomodoro Buddy",
   "description": "Pomodoro Buddy is your ultimate productivity companion in Visual Studio Code. This extension is designed to help you maximize your focus and efficiency while working on your projects. Pomodoro Buddy keeps track of your Pomodoro sessions, allowing you to see how much time you've dedicated to each task. Additionally, it provides you with a detailed summary of your completed sessions and tasks accomplished, helping you evaluate your performance and set goals for improvement.",
   "version": "1.0.0",
+  "publisher": "fredarcito",
   "engines": {
     "vscode": "^1.88.0"
   },
