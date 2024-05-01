@@ -31,14 +31,6 @@ No additional requirements.
 
 No known issues.
 
-## Release Notes
-
-### 1.0.0
-
-Initial release of Pomodoro Buddy.
-
-Enjoy!
-
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
