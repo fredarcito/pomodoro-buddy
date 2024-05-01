@@ -1,71 +1,46 @@
-# pomodoro-test README
+# Pomodoro Buddy
 
-This is the README for your extension "pomodoro-test". After writing up a brief description, we recommend including the following sections.
+Pomodoro Buddy is your ultimate productivity companion in Visual Studio Code. This extension is designed to help you maximize your focus and efficiency while working on your projects.
+
+Pomodoro Buddy keeps track of your Pomodoro sessions, allowing you to see how much time you've dedicated to each task. Additionally, it provides you with a detailed summary of your completed sessions and tasks accomplished, helping you evaluate your performance and set goals for improvement.
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+- Start Pomodoro sessions to focus on your tasks.
+- Set durations for Pomodoro sessions, short breaks, and long breaks.
+- Keep track of completed Pomodoros and task summaries.
 
-For example if there is an image subfolder under your extension project workspace:
+## Usage
 
-\!\[feature X\]\(images/feature-x.png\)
+1. Install the extension from the Visual Studio Code Marketplace.
+2. To start a Pomodoro session, open the command palette (Ctrl/Cmd + Shift + P) and type "Start Pomodoro Session". Press Enter to execute the command.
+3. You can also add a new task by clicking on the "New Task" icon in the status bar or by opening the command palette (Ctrl/Cmd + Shift + P) and typing "Add Task". Press Enter to execute the command, then enter the task name when prompted. You can add multiple tasks during a Pomodoro session.
+4. To view the task summary, click on the "Task Summary" icon in the status bar or by opening the command palette (Ctrl/Cmd + Shift + P) and typing "Show Task Summary".
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+## Commands
+
+- `Pomodoro Buddy: Start Pomodoro Session`: Start a new Pomodoro session.
+- `Pomodoro Buddy: Add Task`: Add a new task.
+- `Pomodoro Buddy: Show Task Summary`: Show the task summary.
+
+## Settings
+
+- `pomodoro-buddy.pomodoroDuration`: Duration of each Pomodoro session in minutes (default: 25).
+- `pomodoro-buddy.breakDuration`: Duration of short breaks in minutes (default: 5).
+- `pomodoro-buddy.longBreakDuration`: Duration of long breaks in minutes (default: 20).
 
 ## Requirements
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
-
-## Extension Settings
-
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+No additional requirements.
 
 ## Known Issues
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+No known issues.
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
-
 ### 1.0.0
 
-Initial release of ...
+Initial release of Pomodoro Buddy.
 
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+Enjoy!
