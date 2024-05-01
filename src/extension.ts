@@ -19,30 +19,32 @@ export function activate(context: vscode.ExtensionContext) {
     100
   );
   statusBarItem.text = "$(clock) Pomodoro";
-  statusBarItem.command = "pomodoro-buddy.helloWorld";
+  statusBarItem.command = "pomodoro-buddy.startPomodoroSession";
   statusBarItem.show();
   context.subscriptions.push(statusBarItem);
 
   context.subscriptions.push(
-    vscode.commands.registerCommand("pomodoro-buddy.helloWorld", () => {
-      vscode.window
-        .showInputBox({
-          placeHolder: "Enter task name",
-          prompt:
-            "Enter the name of the task you are going to work on during this Pomodoro session:",
-        })
-        .then((name) => {
-          console.log(name);
-          if (name) {
-            taskName = name;
+    vscode.commands.registerCommand(
+      "pomodoro-buddy.startPomodoroSession",
+      () => {
+        vscode.window
+          .showInputBox({
+            placeHolder: "Enter task name",
+            prompt:
+              "Enter the name of the task you are going to work on during this Pomodoro session:",
+          })
+          .then((name) => {
+            if (name) {
+              taskName = name;
 
-            taskTime = 0;
-            tasks[name] = 0;
+              taskTime = 0;
+              tasks[name] = 0;
 
-            if (!timer) startTimer(pomodoroDuration, true);
-          }
-        });
-    })
+              if (!timer) startTimer(pomodoroDuration, true);
+            }
+          });
+      }
+    )
   );
 
   context.subscriptions.push(
@@ -132,7 +134,6 @@ function showTaskSummary() {
 
   let summary = "Task Summary:\n";
   for (const task in tasks) {
-    console.log(tasks[task]);
     summary += `- ${task}: ${formatTime(tasks[task])}\n`;
   }
 

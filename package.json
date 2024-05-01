@@ -14,8 +14,8 @@
   "contributes": {
     "commands": [
       {
-        "command": "pomodoro-buddy.helloWorld",
-        "title": "Hello World"
+        "command": "pomodoro-buddy.startPomodoroSession",
+        "title": "Start Pomodoro Session"
       },
       {
         "command": "pomodoro-buddy.showTaskSummary",
