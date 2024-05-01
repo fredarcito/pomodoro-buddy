@@ -38,3 +38,15 @@ No known issues.
 Initial release of Pomodoro Buddy.
 
 Enjoy!
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
+
+## 🚀 About Me
+
+Hello everyone, I'm fredarcito, a Frontend engineer in constant learning. I only know that I don't know anything, but Google knows.
+
+## Feedback
+
+If you have any feedback, please reach out to us at freddy@gogrow.dev
